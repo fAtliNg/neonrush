@@ -1,0 +1,328 @@
+.app {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.logo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.1rem, 7vw, 3.6rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.3em;
+  justify-content: center;
+  color: #fff;
+  text-shadow:
+    0 0 18px rgba(255, 43, 214, 0.75),
+    0 0 48px rgba(255, 43, 214, 0.35);
+}
+
+.logoRush {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 16px rgba(43, 240, 255, 0.45));
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 28px;
+  justify-items: center;
+  background:
+    radial-gradient(ellipse at 50% 120%, rgba(139, 92, 255, 0.35), transparent 60%),
+    radial-gradient(ellipse at 50% -20%, rgba(255, 43, 214, 0.18), transparent 55%),
+    var(--bg);
+}
+
+.bar {
+  width: min(320px, 70vw);
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: var(--gradient);
+  box-shadow: 0 0 16px rgba(255, 43, 214, 0.7);
+  transition: width 0.4s var(--ease-out);
+}
+
+.loadingLabel {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+
+.menuWrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: radial-gradient(ellipse at center, rgba(7, 5, 13, 0.25), rgba(7, 5, 13, 0.75));
+  overflow-y: auto;
+}
+
+.menu {
+  width: min(600px, 100%);
+  min-width: 0;
+  padding: clamp(24px, 4vw, 40px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  background: var(--panel);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow:
+    0 0 0 1px rgba(255, 43, 214, 0.08),
+    0 30px 80px -30px rgba(139, 92, 255, 0.55);
+  display: grid;
+  /* minmax(0, 1fr): иначе широкий контент растягивает колонку шире панели */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  text-align: center;
+  animation: rise 0.6s var(--ease-out);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+
+.tagline {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.primary {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 30px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gradient);
+  color: #0b0716;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 32px rgba(255, 43, 214, 0.45);
+  transition:
+    transform 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out);
+}
+
+.primary kbd {
+  border-color: rgba(11, 7, 22, 0.35);
+  background: rgba(11, 7, 22, 0.12);
+  color: #0b0716;
+}
+
+.primary:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 48px rgba(255, 43, 214, 0.65);
+}
+
+.primary:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 18px;
+  text-align: left;
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+@media (max-width: 460px) {
+  .controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.keys {
+  display: inline-flex;
+  gap: 4px;
+  flex: none;
+  min-width: 64px;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-3);
+  text-wrap: balance;
+}
+
+.quality {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.segmented button {
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.segmented .segActive {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px rgba(43, 240, 255, 0.35);
+}
+
+.backend {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+
+.backend b {
+  color: var(--cyan);
+}
+
+.error {
+  margin: 0;
+  padding: 12px;
+  border-radius: var(--radius-s);
+  background: rgba(255, 59, 92, 0.1);
+  color: #ffb3c0;
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+  text-align: left;
+  max-height: 160px;
+  overflow: auto;
+}
+
+.secondary {
+  justify-self: center;
+  padding: 9px 20px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+
+.secondary:hover,
+.secondary:focus-visible {
+  border-color: var(--cyan);
+  background: rgba(43, 240, 255, 0.08);
+  outline: none;
+}
+
+.resultsTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: 0.04em;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.results {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+  text-align: left;
+}
+
+.results li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  grid-template-areas: 'pos name time' 'pos best best';
+  column-gap: 12px;
+  align-items: baseline;
+  padding: 8px 12px;
+  border-radius: var(--radius-s);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.results .resultMe {
+  background: rgba(255, 43, 214, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 43, 214, 0.4);
+}
+
+.resultPos {
+  grid-area: pos;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-2);
+}
+
+.resultName {
+  grid-area: name;
+  font-weight: 600;
+}
+
+.resultTime {
+  grid-area: time;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+}
+
+.resultBest {
+  grid-area: best;
+  font-size: 0.75rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
